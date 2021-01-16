@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title></title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
+  <script src='//d3js.org/d3.v3.min.js' charset='utf-8'></script>
+  <link href="style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="js.js"></script>
+</head>
+<body>
+
+<nav id='menu' class='menu'></nav>
+
+<div id='header'>
+  <a>Choose layer</a>
+</div>
+
+<div id='nav'>
+
+  <ul id="accordion" class="accordion">
+      <li class="default open">
+          <div class="link"><i class="fas fa-bars"></i>Ceratitis capitata<i class="fa fa-chevron-down" id="kategorie"></i></div>
+          <form name="submenu1">
+          <ul class="submenu" name="submenu1">
+              <li><input type="radio" name="path" id="1" value="capitata_flagged_by_script" onclick="myFunction()" checked><a href="#">Flagged by script</a></li>
+              <li><input type="radio" name="path" id="2" value="capitata_flagged_by_buffor_1km" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
+              <li><input type="radio" name="path" id="3" value="capitata_flagged_by_hand" placeholder="" onclick="myFunction()"><a href="#">Flagged by hand</a></li>
+              <li><input type="radio" name="path" id="4" value="capitata_status_ok" placeholder="" onclick="myFunction()"><a href="#">Not flagged</a></li>
+          </ul>
+      </li>
+      <li class="default open">
+          <div class="link"><i class="fas fa-bars"></i>Bactrocera dorsalis<i class="fa fa-chevron-down" id='mapa'></i></div>
+          
+              <ul class="submenu">
+                <li><input type="radio" name="path" id="1" value="dorsalis_flagged_by_script" placeholder="" onclick="myFunction()"><a href="#">Flagged by script</a></li>
+                <li><input type="radio" name="path" id="1" value="dorsalis_flagged_by_buffor_1km" placeholder="" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
+                <li><input type="radio" name="path" id="1" value="dorsalis_status_ok" placeholder="" onclick="myFunction()"><a href="#">Not flagged</a></li>
+              </ul>
+         
+      </li>
+      <li class="default open">
+        <div class="link"><i class="fas fa-bars"></i>Bactrocera zonata<i class="fa fa-chevron-down" id='mapa'></i></div>
+        
+            <ul class="submenu">
+              <li><input type="radio" name="path" id="1" value="zonata_flagged_by_script" placeholder="" onclick="myFunction()"><a href="#">Flagged by script</a></li>
+              <li><input type="radio" name="path" id="1" value="zonata_flagged_by_buffor_1km" placeholder="" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
+              <li><input type="radio" name="path" id="1" value="zonata_status_ok" placeholder="" onclick="myFunction()"><a href="#">Not flagged</a></li>
+            </ul>
+        </form>
+    </li>
+      
+  </ul>
+
+</div>
+
+<div id="popup">
+  <div id="header-popup">
+    <a>Attribute properties</a>
+  </div>
+  <ul id='features'></ul>
+</div>
+  
+<div id='map' class='map'></div>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoia2Fya296MyIsImEiOiJjamRhbWV1ZHIybXNtMnFsYjFjODF3aWlzIn0.L5HrNymgl6ji82sWn4OQQQ';
+var map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/mapbox/light-v10',
+zoom: 1,
+center: [4.899, 52.372]
+});
+
+var baseLayers = [{
+  label: 'Light',
+  id: 'light-v10'
+}, {
+  label: 'Outdoors',
+  id: 'outdoors-v11'
+}, {
+  label: 'Satellite',
+  id: 'satellite-v9'
+}];
+
+var menu = document.getElementById('menu');
+//var geojson = './data/capitata_flagged_by_buffor_1km.geojson';
+
+function addDataLayer() {
+  map.addSource('capitata_flagged_by_script', {
+    'type': 'geojson',
+    'data': './data/capitata_flagged_by_script.geojson'
+  });
+
+  map.addLayer({
+  id: 'capitata_flagged_by_script',
+  type: 'circle',
+  source: 'capitata_flagged_by_script',
+  layout: {
+  // make layer non visible by default
+  'visibility': 'none'
+  },
+  paint: {
+    'circle-radius': 4,
+    'circle-color': 'red',
+    'circle-stroke-color': 'white',
+    'circle-stroke-width': 1,
+    'circle-opacity': 0.6
+  }
+});
+
+map.addSource('capitata_flagged_by_buffor_1km', {
+    'type': 'geojson',
+    'data': './data/capitata_flagged_by_buffor_1km.geojson'
+  });
+
+  map.addLayer({
+  id: 'capitata_flagged_by_buffor_1km',
+  type: 'circle',
+  source: 'capitata_flagged_by_buffor_1km',
+  layout: {
+  // make layer visible by default
+  'visibility': 'none'
+  },
+  paint: {
+    'circle-radius': 4,
+    'circle-color': 'red',
+    'circle-stroke-color': 'white',
+    'circle-stroke-width': 1,
+    'circle-opacity': 0.6
+  }
+});
+
+map.addSource('capitata_flagged_by_hand', {
+    'type': 'geojson',
+    'data': './data/capitata_flagged_by_hand.geojson'
+  });
+
+  map.addLayer({
+  id: 'capitata_flagged_by_hand',
+  type: 'circle',
+  source: 'capitata_flagged_by_hand',
+  layout: {
+  // make layer visible by default
+  'visibility': 'none'
+  },
+  paint: {
+    'circle-radius': 4,
+    'circle-color': 'red',
+    'circle-stroke-color': 'white',
+    'circle-stroke-width': 1,
+    'circle-opacity': 0.6
+  }
+});
+
+map.addSource('capitata_status_ok', {
+    'type': 'geojson',
+    'data': './data/capitata_status_ok.geojson'
+  });
+
+  map.addLayer({
+  id: 'capitata_status_ok',
+  type: 'circle',
+  source: 'capitata_status_ok',
+  layout: {
+  // make layer visible by default
+  'visibility': 'none'
+  },
+  paint: {
+    'circle-radius': 4,
+    'circle-color': 'green',
+    'circle-stroke-color': 'white',
+    'circle-stroke-width': 1,
+    'circle-opacity': 0.6
+  }
+});
+
+map.addSource('dorsalis_flagged_by_script', {
+    'type': 'geojson',
+    'data': './data/dorsalis_flagged_by_script.geojson'
+  });
+
+  map.addLayer({
+  id: 'dorsalis_flagged_by_script',
+  type: 'circle',
+  source: 'dorsalis_flagged_by_script',
+  layout: {
+  // make layer visible by default
+  'visibility': 'none'
+  },
+  paint: {
+    'circle-radius': 4,
+    'circle-color': 'red',
+    'circle-stroke-color': 'white',
+    'circle-stroke-width': 1,
+    'circle-opacity': 0.6
+  }
+});
+
+map.addSource('dorsalis_flagged_by_buffor_1km', {
+    'type': 'geojson',
+    'data': './data/dorsalis_flagged_by_buffor_1km.geojson'
+  });
+
+  map.addLayer({
+  id: 'dorsalis_flagged_by_buffor_1km',
+  type: 'circle',
+  source: 'dorsalis_flagged_by_buffor_1km',
+  layout: {
+  // make layer visible by default
+  'visibility': 'none'
+  },
+  paint: {
+    'circle-radius': 4,
+    'circle-color': 'red',
+    'circle-stroke-color': 'white',
+    'circle-stroke-width': 1,
+    'circle-opacity': 0.6
+  }
+});
+
+map.addSource('dorsalis_status_ok', {
+    'type': 'geojson',
+    'data': './data/dorsalis_status_ok.geojson'
+  });
+
+  map.addLayer({
+  id: 'dorsalis_status_ok',
+  type: 'circle',
+  source: 'dorsalis_status_ok',
+  layout: {
+  // make layer visible by default
+  'visibility': 'none'
+  },
+  paint: {
+    'circle-radius': 4,
+    'circle-color': 'green',
+    'circle-stroke-color': 'white',
+    'circle-stroke-width': 1,
+    'circle-opacity': 0.6
+  }
+});
+
+map.addSource('zonata_flagged_by_script', {
+    'type': 'geojson',
+    'data': './data/zonata_flagged_by_script.geojson'
+  });
+
+  map.addLayer({
+  id: 'zonata_flagged_by_script',
+  type: 'circle',
+  source: 'zonata_flagged_by_script',
+  layout: {
+  // make layer visible by default
+  'visibility': 'none'
+  },
+  paint: {
+    'circle-radius': 4,
+    'circle-color': 'red',
+    'circle-stroke-color': 'white',
+    'circle-stroke-width': 1,
+    'circle-opacity': 0.6
+  }
+});
+
+map.addSource('zonata_flagged_by_buffor_1km', {
+    'type': 'geojson',
+    'data': './data/zonata_flagged_by_buffor_1km.geojson'
+  });
+
+  map.addLayer({
+  id: 'zonata_flagged_by_buffor_1km',
+  type: 'circle',
+  source: 'zonata_flagged_by_buffor_1km',
+  layout: {
+  // make layer visible by default
+  'visibility': 'none'
+  },
+  paint: {
+    'circle-radius': 4,
+    'circle-color': 'red',
+    'circle-stroke-color': 'white',
+    'circle-stroke-width': 1,
+    'circle-opacity': 0.6
+  }
+});
+
+map.addSource('zonata_status_ok', {
+    'type': 'geojson',
+    'data': './data/zonata_status_ok.geojson'
+  });
+
+  map.addLayer({
+  id: 'zonata_status_ok',
+  type: 'circle',
+  source: 'zonata_status_ok',
+  layout: {
+  // make layer visible by default
+  'visibility': 'none'
+  },
+  paint: {
+    'circle-radius': 4,
+    'circle-color': 'green',
+    'circle-stroke-color': 'white',
+    'circle-stroke-width': 1,
+    'circle-opacity': 0.6
+  }
+});
+
+//make visible active radio input
+
+  const selections = document.querySelectorAll('input[name="path"]');
+  let userSelection;
+  for (const selection of selections) {
+    if (selection.checked) {
+      userSelection = selection.value;
+      break;
+    }
+  }
+  console.log(userSelection);
+
+  map.setLayoutProperty(userSelection, 'visibility', 'visible')
+
+}
+
+map.on('style.load', function () {
+  // Triggered when `setStyle` is called.
+
+  addDataLayer();
+   
+});
+
+map.on('load', function () {
+
+  baseLayers.forEach(function(l) {
+    var button = document.createElement('button'); 
+    button.textContent = l.label;
+    button.addEventListener('click', function() {
+      map.setStyle('mapbox://styles/mapbox/' + l.id); 
+    });
+
+    menu.appendChild(button);
+  });
+});
+
+//function for get geojson file path
+var activeLayer = "capitata_flagged_by_script";
+function myFunction() {
+            
+    var name = document.getElementsByName('path');
+
+    var i;
+    for (i = 0; i < name.length; i++) {
+        if (name[i].checked)
+            txt = name[i].value;
+    }
+    showLayer = txt;
+    //hide active layer
+    map.setLayoutProperty(activeLayer, 'visibility', 'none')
+    //show clicked layer
+    map.setLayoutProperty(showLayer, 'visibility', 'visible')
+    activeLayer = showLayer;
+    console.log(activeLayer);
+
+    // Change the cursor to a pointer when the mouse is over the places layer.
+    map.on('mouseenter', activeLayer, function() {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', activeLayer, function() {
+        map.getCanvas().style.cursor = '';
+    });
+
+    // When a click event occurs on a feature in the places layer, open a popup at the
+    // location of the feature, with description HTML from its properties.
+    map.on('click', activeLayer, function (e) {
+      var features = e.features;
+            var featureList = document.getElementById('features');
+            featureList.innerHTML = '';
+
+            for (var i = 0; i < features.length; i++) {
+                var listToOpen = document.createElement('li');
+                featureList.appendChild(listToOpen);
+                listToOpen.setAttribute('class','default open');
+
+                var featureItem = document.createElement('div');
+                featureItem.setAttribute('class','link');
+                featureItem.innerHTML = "Point no. " + [i];
+                listToOpen.appendChild(featureItem);
+                featureList.setAttribute('class','accordion');
+
+                var propertyList = document.createElement('ul');
+                listToOpen.appendChild(propertyList);
+                propertyList.setAttribute('class','submenu');
+
+                var properties = features[i].properties;
+
+                for (var property in properties) {
+
+                    var propertyItem = document.createElement('li');
+                    propertyItem.textContent = property + ': ' + properties[property];
+                    propertyList.appendChild(propertyItem);
+                    
+                }
+                
+            }
+    });
+}
+
+map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+        
+// Change the cursor to a pointer when the mouse is over the places layer.
+    map.on('mouseenter', "capitata_flagged_by_script", function() {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', "capitata_flagged_by_script", function() {
+        map.getCanvas().style.cursor = '';
+    });
+
+    map.on('click', "capitata_flagged_by_script", function (e) {
+            var features = e.features;
+            var featureList = document.getElementById('features');
+            featureList.innerHTML = '';
+
+            for (var i = 0; i < features.length; i++) {
+                var listToOpen = document.createElement('li');
+                featureList.appendChild(listToOpen);
+                listToOpen.setAttribute('class','default open');
+
+                var featureItem = document.createElement('div');
+                featureItem.setAttribute('class','link');
+                featureItem.innerHTML = "Point no. " + [i];
+                listToOpen.appendChild(featureItem);
+                featureList.setAttribute('class','accordion');
+
+                var propertyList = document.createElement('ul');
+                listToOpen.appendChild(propertyList);
+                propertyList.setAttribute('class','submenu');
+
+                var properties = features[i].properties;
+
+                for (var property in properties) {
+
+                    var propertyItem = document.createElement('li');
+                    propertyItem.textContent = property + ': ' + properties[property];
+                    propertyList.appendChild(propertyItem);
+                    
+                }
+                
+            }
+    });
+
+</script>
+
+</body>
+</html>
