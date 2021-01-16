@@ -10,7 +10,9 @@
   <link href="style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="js.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -24,32 +26,31 @@
 
   <ul id="accordion" class="accordion">
       <li class="default open">
-          <div class="link"><i class="fas fa-bars"></i>Ceratitis capitata<i class="fa fa-chevron-down" id="kategorie"></i></div>
+          <div class="link"><i><input id="stopProp1" type="checkbox" class="group1" onclick="toggle1(this); myFunction()"></i></i>Ceratitis capitata<i class="fa fa-chevron-down" id="kategorie"></i></div>
           <form name="submenu1">
           <ul class="submenu" name="submenu1">
-              <li><input type="radio" name="path" id="1" value="capitata_flagged_by_script" onclick="myFunction()" checked><a href="#">Flagged by script</a></li>
-              <li><input type="radio" name="path" id="2" value="capitata_flagged_by_buffor_1km" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
-              <li><input type="radio" name="path" id="3" value="capitata_flagged_by_hand" placeholder="" onclick="myFunction()"><a href="#">Flagged by hand</a></li>
-              <li><input type="radio" name="path" id="4" value="capitata_status_ok" placeholder="" onclick="myFunction()"><a href="#">Not flagged</a></li>
+              <li><input type="checkbox" class="group1" name="path" id="1" value="capitata_flagged_by_script" onclick="myFunction()" checked><a href="#">Flagged by script</a></li>
+              <li><input type="checkbox" class="group1" name="path" id="2" value="capitata_flagged_by_buffor_1km" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
+              <li><input type="checkbox" class="group1" name="path" id="3" value="capitata_flagged_by_hand" onclick="myFunction()"><a href="#">Flagged by hand</a></li>
+              <li><input type="checkbox" class="group1" name="path" id="4" value="capitata_status_ok" onclick="myFunction()"><a href="#">Not flagged</a></li>
           </ul>
       </li>
       <li class="default open">
-          <div class="link"><i class="fas fa-bars"></i>Bactrocera dorsalis<i class="fa fa-chevron-down" id='mapa'></i></div>
-          
+          <div class="link"><i><input id="stopProp2" type="checkbox" class="group2" onclick="toggle2(this); myFunction()"></i></i>Bactrocera dorsalis<i class="fa fa-chevron-down" class='mapa'></i></div>
               <ul class="submenu">
-                <li><input type="radio" name="path" id="1" value="dorsalis_flagged_by_script" placeholder="" onclick="myFunction()"><a href="#">Flagged by script</a></li>
-                <li><input type="radio" name="path" id="1" value="dorsalis_flagged_by_buffor_1km" placeholder="" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
-                <li><input type="radio" name="path" id="1" value="dorsalis_status_ok" placeholder="" onclick="myFunction()"><a href="#">Not flagged</a></li>
+                <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_flagged_by_script" placeholder="" onclick="myFunction()"><a href="#">Flagged by script</a></li>
+                <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_flagged_by_buffor_1km" placeholder="" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
+                <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_status_ok" placeholder="" onclick="myFunction()"><a href="#">Not flagged</a></li>
               </ul>
          
       </li>
       <li class="default open">
-        <div class="link"><i class="fas fa-bars"></i>Bactrocera zonata<i class="fa fa-chevron-down" id='mapa'></i></div>
+        <div class="link"><i><input id="stopProp3" type="checkbox" class="group3" onclick="toggle3(this); myFunction()"></i>Bactrocera zonata<i class="fa fa-chevron-down" id='mapa'></i></div>
         
             <ul class="submenu">
-              <li><input type="radio" name="path" id="1" value="zonata_flagged_by_script" placeholder="" onclick="myFunction()"><a href="#">Flagged by script</a></li>
-              <li><input type="radio" name="path" id="1" value="zonata_flagged_by_buffor_1km" placeholder="" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
-              <li><input type="radio" name="path" id="1" value="zonata_status_ok" placeholder="" onclick="myFunction()"><a href="#">Not flagged</a></li>
+              <li><input type="checkbox" class="group3" name="path" id="1" value="zonata_flagged_by_script" placeholder="" onclick="myFunction()"><a href="#">Flagged by script</a></li>
+              <li><input type="checkbox" class="group3" name="path" id="1" value="zonata_flagged_by_buffor_1km" placeholder="" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
+              <li><input type="checkbox" class="group3" name="path" id="1" value="zonata_status_ok" placeholder="" onclick="myFunction()"><a href="#">Not flagged</a></li>
             </ul>
         </form>
     </li>
@@ -318,12 +319,12 @@ map.addSource('zonata_status_ok', {
   for (const selection of selections) {
     if (selection.checked) {
       userSelection = selection.value;
-      break;
+      map.setLayoutProperty(userSelection, 'visibility', 'visible');
     }
   }
-  console.log(userSelection);
+  //console.log(userSelection);
 
-  map.setLayoutProperty(userSelection, 'visibility', 'visible')
+  //map.setLayoutProperty(userSelection, 'visibility', 'visible')
 
 }
 
@@ -347,6 +348,30 @@ map.on('load', function () {
   });
 });
 
+function toggle1(source) {
+    var checkboxes = document.querySelectorAll('input[class="group1"]');
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i] != source)
+            checkboxes[i].checked = source.checked;
+    }
+}
+
+function toggle2(source) {
+    var checkboxes = document.querySelectorAll('input[class="group2"]');
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i] != source)
+            checkboxes[i].checked = source.checked;
+    }
+}
+
+function toggle3(source) {
+    var checkboxes = document.querySelectorAll('input[class="group3"]');
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i] != source)
+            checkboxes[i].checked = source.checked;
+    }
+}
+
 //function for get geojson file path
 var activeLayer = "capitata_flagged_by_script";
 function myFunction() {
@@ -355,18 +380,12 @@ function myFunction() {
 
     var i;
     for (i = 0; i < name.length; i++) {
-        if (name[i].checked)
-            txt = name[i].value;
-    }
-    showLayer = txt;
-    //hide active layer
-    map.setLayoutProperty(activeLayer, 'visibility', 'none')
-    //show clicked layer
-    map.setLayoutProperty(showLayer, 'visibility', 'visible')
-    activeLayer = showLayer;
-    console.log(activeLayer);
+        if (name[i].checked) {
+          activeLayer = name[i].value;
+          console.log(activeLayer);
+          map.setLayoutProperty(activeLayer, 'visibility', 'visible')
 
-    // Change the cursor to a pointer when the mouse is over the places layer.
+          // Change the cursor to a pointer when the mouse is over the places layer.
     map.on('mouseenter', activeLayer, function() {
         map.getCanvas().style.cursor = 'pointer';
     });
@@ -410,6 +429,21 @@ function myFunction() {
                 
             }
     });
+        } else {
+          activeLayer = name[i].value;
+          map.setLayoutProperty(activeLayer, 'visibility', 'none')
+        }
+    }
+    //showLayer = txt;
+    
+    //hide active layer
+    //map.setLayoutProperty(activeLayer, 'visibility', 'none')
+    //show clicked layer
+    //map.setLayoutProperty(showLayer, 'visibility', 'visible')
+    //activeLayer = showLayer;
+    //console.log(activeLayer);
+
+    
 }
 
 map.addControl(new mapboxgl.NavigationControl(), 'top-left');

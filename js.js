@@ -27,6 +27,24 @@ $(function () {
 	var accordion2 = new Accordion($('#features'), false);
 });
 
+$(function() {
+    $('#stopProp1').on('click', function(e) {
+      e.stopPropagation();
+    });
+});
+
+$(function() {
+    $('#stopProp2').on('click', function(e) {
+      e.stopPropagation();
+    });
+});
+
+$(function() {
+    $('#stopProp3').on('click', function(e) {
+      e.stopPropagation();
+    });
+});
+
 $('li').click(function () {
     $(':radio[data-price-id="' + $(this).data('level') + '"]').prop('checked', true);
 });
