@@ -40,6 +40,7 @@
               <ul class="submenu">
                 <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_flagged_by_script" placeholder="" onclick="myFunction()"><a href="#">Flagged by script</a></li>
                 <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_flagged_by_buffor_1km" placeholder="" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
+                <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_by_hand" placeholder="" onclick="myFunction()"><a href="#">Flagged by hand</a></li>
                 <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_status_ok" placeholder="" onclick="myFunction()"><a href="#">Not flagged</a></li>
               </ul>
          
@@ -211,6 +212,28 @@ map.addSource('dorsalis_flagged_by_buffor_1km', {
   id: 'dorsalis_flagged_by_buffor_1km',
   type: 'circle',
   source: 'dorsalis_flagged_by_buffor_1km',
+  layout: {
+  // make layer visible by default
+  'visibility': 'none'
+  },
+  paint: {
+    'circle-radius': 4,
+    'circle-color': 'red',
+    'circle-stroke-color': 'white',
+    'circle-stroke-width': 1,
+    'circle-opacity': 0.6
+  }
+});
+
+map.addSource('dorsalis_by_hand', {
+    'type': 'geojson',
+    'data': './data/dorsalis_by_hand.geojson'
+  });
+
+  map.addLayer({
+  id: 'dorsalis_by_hand',
+  type: 'circle',
+  source: 'dorsalis_by_hand',
   layout: {
   // make layer visible by default
   'visibility': 'none'
