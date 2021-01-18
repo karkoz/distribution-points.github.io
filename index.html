@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset='utf-8' />
   <title></title>
@@ -8,513 +9,643 @@
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
   <script src='//d3js.org/d3.v3.min.js' charset='utf-8'></script>
   <link href="style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+    integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="js.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
+
 <body>
 
-<nav id='menu' class='menu'></nav>
+  <nav id='menu' class='menu'></nav>
 
-<div id='header'>
-  <a>Choose layer</a>
-</div>
+  <div id='header'>
+    <a>Choose layer</a>
+  </div>
 
-<div id='nav'>
+  <div id='nav'>
 
-  <ul id="accordion" class="accordion">
+    <ul id="accordion" class="accordion">
       <li class="default open">
-          <div class="link"><i><input id="stopProp1" type="checkbox" class="group1" onclick="toggle1(this); myFunction()"></i></i>Ceratitis capitata<i class="fa fa-chevron-down" id="kategorie"></i></div>
-          <form name="submenu1">
+        <div class="link"><i><input id="stopProp1" type="checkbox" class="group1"
+              onclick="toggle1(this); myFunction()"></i></i>Ceratitis capitata<i class="fa fa-chevron-down"
+            id="kategorie"></i></div>
+        <form name="submenu1">
           <ul class="submenu" name="submenu1">
-            <li><input type="checkbox" class="group1" name="path" id="4" value="capitata_status_ok" onclick="myFunction()" checked><a href="#">Cleaned data</a></li>
-              <li><input type="checkbox" class="group1" name="path" id="1" value="capitata_flagged_by_script" onclick="myFunction()"><a href="#">Flagged by script</a></li>
-              <li><input type="checkbox" class="group1" name="path" id="2" value="capitata_flagged_by_buffor_1km" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
-              <li><input type="checkbox" class="group1" name="path" id="3" value="capitata_flagged_by_hand" onclick="myFunction()"><a href="#">Flagged by hand</a></li>
+            <li><input type="checkbox" class="group1" name="path" id="4" value="capitata_status_ok"
+                onclick="myFunction()" checked><a href="#">Cleaned data</a></li>
+            <li><input type="checkbox" class="group1" name="path" id="1" value="capitata_flagged_by_script"
+                onclick="myFunction()"><a href="#">Flagged by script</a></li>
+            <li><input type="checkbox" class="group1" name="path" id="2" value="capitata_flagged_by_buffor_1km"
+                onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
+            <li><input type="checkbox" class="group1" name="path" id="3" value="capitata_flagged_by_hand"
+                onclick="myFunction()"><a href="#">Flagged by hand</a></li>
+            <li><input type="checkbox" class="group1" name="path" id="3" value="capitata_bebif"
+                onclick="myFunction()"><a href="#">Data from bebif.be</a></li>
           </ul>
       </li>
       <li class="default open">
-          <div class="link"><i><input id="stopProp2" type="checkbox" class="group2" onclick="toggle2(this); myFunction()"></i></i>Bactrocera dorsalis<i class="fa fa-chevron-down" class='mapa'></i></div>
-              <ul class="submenu">
-                <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_status_ok" placeholder="" onclick="myFunction()"><a href="#">Cleaned data</a></li>
-                <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_flagged_by_script" placeholder="" onclick="myFunction()"><a href="#">Flagged by script</a></li>
-                <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_flagged_by_buffor_1km" placeholder="" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
-                <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_by_hand" placeholder="" onclick="myFunction()"><a href="#">Flagged by hand</a></li>
-              </ul>
-         
+        <div class="link"><i><input id="stopProp2" type="checkbox" class="group2"
+              onclick="toggle2(this); myFunction()"></i></i>Bactrocera dorsalis<i class="fa fa-chevron-down"
+            class='mapa'></i></div>
+        <ul class="submenu">
+          <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_status_ok" placeholder=""
+              onclick="myFunction()"><a href="#">Cleaned data</a></li>
+          <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_flagged_by_script" placeholder=""
+              onclick="myFunction()"><a href="#">Flagged by script</a></li>
+          <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_flagged_by_buffor_1km"
+              placeholder="" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
+          <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_by_hand" placeholder=""
+              onclick="myFunction()"><a href="#">Flagged by hand</a></li>
+        </ul>
+
       </li>
       <li class="default open">
-        <div class="link"><i><input id="stopProp3" type="checkbox" class="group3" onclick="toggle3(this); myFunction()"></i>Bactrocera zonata<i class="fa fa-chevron-down" id='mapa'></i></div>
-        
-            <ul class="submenu">
-              <li><input type="checkbox" class="group3" name="path" id="1" value="zonata_status_ok" placeholder="" onclick="myFunction()"><a href="#">Cleaned data</a></li>
-              <li><input type="checkbox" class="group3" name="path" id="1" value="zonata_flagged_by_script" placeholder="" onclick="myFunction()"><a href="#">Flagged by script</a></li>
-              <li><input type="checkbox" class="group3" name="path" id="1" value="zonata_flagged_by_buffor_1km" placeholder="" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
-            </ul>
+        <div class="link"><i><input id="stopProp3" type="checkbox" class="group3"
+              onclick="toggle3(this); myFunction()"></i>Bactrocera zonata<i class="fa fa-chevron-down" id='mapa'></i>
+        </div>
+
+        <ul class="submenu">
+          <li><input type="checkbox" class="group3" name="path" id="1" value="zonata_status_ok" placeholder=""
+              onclick="myFunction()"><a href="#">Cleaned data</a></li>
+          <li><input type="checkbox" class="group3" name="path" id="1" value="zonata_flagged_by_script" placeholder=""
+              onclick="myFunction()"><a href="#">Flagged by script</a></li>
+          <li><input type="checkbox" class="group3" name="path" id="1" value="zonata_flagged_by_buffor_1km"
+              placeholder="" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
+        </ul>
         </form>
-    </li>
-      
-  </ul>
+      </li>
 
-</div>
+    </ul>
 
-<div id="popup">
-  <div id="header-popup">
-    <a>Attribute properties</a>
   </div>
-  <ul id='features'></ul>
-</div>
-  
-<div id='map' class='map'></div>
 
-<script>
-mapboxgl.accessToken = 'pk.eyJ1Ijoia2Fya296MyIsImEiOiJjamRhbWV1ZHIybXNtMnFsYjFjODF3aWlzIn0.L5HrNymgl6ji82sWn4OQQQ';
-var map = new mapboxgl.Map({
-container: 'map',
-style: 'mapbox://styles/mapbox/light-v10',
-zoom: 1,
-center: [4.899, 52.372]
-});
+  <div id="popup">
+    <div id="header-popup">
+      <a>Attribute properties</a>
+    </div>
+    <ul id='features'></ul>
+  </div>
 
-var baseLayers = [{
-  label: 'Light',
-  id: 'light-v10'
-}, {
-  label: 'Outdoors',
-  id: 'outdoors-v11'
-}, {
-  label: 'Satellite',
-  id: 'satellite-v9'
-}];
+  <div id='map' class='map'></div>
 
-var menu = document.getElementById('menu');
-//var geojson = './data/capitata_flagged_by_buffor_1km.geojson';
-
-function addDataLayer() {
-  map.addSource('capitata_flagged_by_script', {
-    'type': 'geojson',
-    'data': './data/capitata_flagged_by_script.geojson'
-  });
-
-  map.addLayer({
-  id: 'capitata_flagged_by_script',
-  type: 'circle',
-  source: 'capitata_flagged_by_script',
-  layout: {
-  // make layer non visible by default
-  'visibility': 'none'
-  },
-  paint: {
-    'circle-radius': 4,
-    'circle-color': 'red',
-    'circle-stroke-color': 'white',
-    'circle-stroke-width': 1,
-    'circle-opacity': 0.6
-  }
-});
-
-map.addSource('capitata_flagged_by_buffor_1km', {
-    'type': 'geojson',
-    'data': './data/capitata_flagged_by_buffor_1km.geojson'
-  });
-
-  map.addLayer({
-  id: 'capitata_flagged_by_buffor_1km',
-  type: 'circle',
-  source: 'capitata_flagged_by_buffor_1km',
-  layout: {
-  // make layer visible by default
-  'visibility': 'none'
-  },
-  paint: {
-    'circle-radius': 4,
-    'circle-color': 'red',
-    'circle-stroke-color': 'white',
-    'circle-stroke-width': 1,
-    'circle-opacity': 0.6
-  }
-});
-
-map.addSource('capitata_flagged_by_hand', {
-    'type': 'geojson',
-    'data': './data/capitata_flagged_by_hand.geojson'
-  });
-
-  map.addLayer({
-  id: 'capitata_flagged_by_hand',
-  type: 'circle',
-  source: 'capitata_flagged_by_hand',
-  layout: {
-  // make layer visible by default
-  'visibility': 'none'
-  },
-  paint: {
-    'circle-radius': 4,
-    'circle-color': 'red',
-    'circle-stroke-color': 'white',
-    'circle-stroke-width': 1,
-    'circle-opacity': 0.6
-  }
-});
-
-map.addSource('capitata_status_ok', {
-    'type': 'geojson',
-    'data': './data/capitata_status_ok.geojson'
-  });
-
-  map.addLayer({
-  id: 'capitata_status_ok',
-  type: 'circle',
-  source: 'capitata_status_ok',
-  layout: {
-  // make layer visible by default
-  'visibility': 'none'
-  },
-  paint: {
-    'circle-radius': 4,
-    'circle-color': 'green',
-    'circle-stroke-color': 'white',
-    'circle-stroke-width': 1,
-    'circle-opacity': 0.6
-  }
-});
-
-map.addSource('dorsalis_flagged_by_script', {
-    'type': 'geojson',
-    'data': './data/dorsalis_flagged_by_script.geojson'
-  });
-
-  map.addLayer({
-  id: 'dorsalis_flagged_by_script',
-  type: 'circle',
-  source: 'dorsalis_flagged_by_script',
-  layout: {
-  // make layer visible by default
-  'visibility': 'none'
-  },
-  paint: {
-    'circle-radius': 4,
-    'circle-color': 'red',
-    'circle-stroke-color': 'white',
-    'circle-stroke-width': 1,
-    'circle-opacity': 0.6
-  }
-});
-
-map.addSource('dorsalis_flagged_by_buffor_1km', {
-    'type': 'geojson',
-    'data': './data/dorsalis_flagged_by_buffor_1km.geojson'
-  });
-
-  map.addLayer({
-  id: 'dorsalis_flagged_by_buffor_1km',
-  type: 'circle',
-  source: 'dorsalis_flagged_by_buffor_1km',
-  layout: {
-  // make layer visible by default
-  'visibility': 'none'
-  },
-  paint: {
-    'circle-radius': 4,
-    'circle-color': 'red',
-    'circle-stroke-color': 'white',
-    'circle-stroke-width': 1,
-    'circle-opacity': 0.6
-  }
-});
-
-map.addSource('dorsalis_by_hand', {
-    'type': 'geojson',
-    'data': './data/dorsalis_by_hand.geojson'
-  });
-
-  map.addLayer({
-  id: 'dorsalis_by_hand',
-  type: 'circle',
-  source: 'dorsalis_by_hand',
-  layout: {
-  // make layer visible by default
-  'visibility': 'none'
-  },
-  paint: {
-    'circle-radius': 4,
-    'circle-color': 'red',
-    'circle-stroke-color': 'white',
-    'circle-stroke-width': 1,
-    'circle-opacity': 0.6
-  }
-});
-
-map.addSource('dorsalis_status_ok', {
-    'type': 'geojson',
-    'data': './data/dorsalis_status_ok.geojson'
-  });
-
-  map.addLayer({
-  id: 'dorsalis_status_ok',
-  type: 'circle',
-  source: 'dorsalis_status_ok',
-  layout: {
-  // make layer visible by default
-  'visibility': 'none'
-  },
-  paint: {
-    'circle-radius': 4,
-    'circle-color': 'green',
-    'circle-stroke-color': 'white',
-    'circle-stroke-width': 1,
-    'circle-opacity': 0.6
-  }
-});
-
-map.addSource('zonata_flagged_by_script', {
-    'type': 'geojson',
-    'data': './data/zonata_flagged_by_script.geojson'
-  });
-
-  map.addLayer({
-  id: 'zonata_flagged_by_script',
-  type: 'circle',
-  source: 'zonata_flagged_by_script',
-  layout: {
-  // make layer visible by default
-  'visibility': 'none'
-  },
-  paint: {
-    'circle-radius': 4,
-    'circle-color': 'red',
-    'circle-stroke-color': 'white',
-    'circle-stroke-width': 1,
-    'circle-opacity': 0.6
-  }
-});
-
-map.addSource('zonata_flagged_by_buffor_1km', {
-    'type': 'geojson',
-    'data': './data/zonata_flagged_by_buffor_1km.geojson'
-  });
-
-  map.addLayer({
-  id: 'zonata_flagged_by_buffor_1km',
-  type: 'circle',
-  source: 'zonata_flagged_by_buffor_1km',
-  layout: {
-  // make layer visible by default
-  'visibility': 'none'
-  },
-  paint: {
-    'circle-radius': 4,
-    'circle-color': 'red',
-    'circle-stroke-color': 'white',
-    'circle-stroke-width': 1,
-    'circle-opacity': 0.6
-  }
-});
-
-map.addSource('zonata_status_ok', {
-    'type': 'geojson',
-    'data': './data/zonata_status_ok.geojson'
-  });
-
-  map.addLayer({
-  id: 'zonata_status_ok',
-  type: 'circle',
-  source: 'zonata_status_ok',
-  layout: {
-  // make layer visible by default
-  'visibility': 'none'
-  },
-  paint: {
-    'circle-radius': 4,
-    'circle-color': 'green',
-    'circle-stroke-color': 'white',
-    'circle-stroke-width': 1,
-    'circle-opacity': 0.6
-  }
-});
-
-//make visible active radio input
-
-  const selections = document.querySelectorAll('input[name="path"]');
-  let userSelection;
-  for (const selection of selections) {
-    if (selection.checked) {
-      userSelection = selection.value;
-      map.setLayoutProperty(userSelection, 'visibility', 'visible');
-    }
-  }
-  //console.log(userSelection);
-
-  //map.setLayoutProperty(userSelection, 'visibility', 'visible')
-
-}
-
-map.on('style.load', function () {
-  // Triggered when `setStyle` is called.
-
-  addDataLayer();
-   
-});
-
-map.on('load', function () {
-
-  baseLayers.forEach(function(l) {
-    var button = document.createElement('button'); 
-    button.textContent = l.label;
-    button.addEventListener('click', function() {
-      map.setStyle('mapbox://styles/mapbox/' + l.id); 
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoia2Fya296MyIsImEiOiJjamRhbWV1ZHIybXNtMnFsYjFjODF3aWlzIn0.L5HrNymgl6ji82sWn4OQQQ';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/light-v10',
+      zoom: 1,
+      center: [4.899, 52.372]
     });
 
-    menu.appendChild(button);
-  });
-});
+    var baseLayers = [{
+      label: 'Light',
+      id: 'light-v10'
+    }, {
+      label: 'Outdoors',
+      id: 'outdoors-v11'
+    }, {
+      label: 'Satellite',
+      id: 'satellite-v9'
+    }];
 
-function toggle1(source) {
-    var checkboxes = document.querySelectorAll('input[class="group1"]');
-    for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i] != source)
-            checkboxes[i].checked = source.checked;
+    var menu = document.getElementById('menu');
+    //var geojson = './data/capitata_flagged_by_buffor_1km.geojson';
+
+    function addDataLayer() {
+      map.addSource('capitata_flagged_by_script', {
+        'type': 'geojson',
+        'data': './data/capitata_flagged_by_script.geojson'
+      });
+
+      map.addLayer({
+        id: 'capitata_flagged_by_script',
+        type: 'circle',
+        source: 'capitata_flagged_by_script',
+        layout: {
+          // make layer non visible by default
+          'visibility': 'none'
+        },
+        paint: {
+          'circle-radius': 4,
+          'circle-color': 'red',
+          'circle-stroke-color': 'white',
+          'circle-stroke-width': 1,
+          'circle-opacity': 0.6
+        }
+      });
+
+      map.addSource('capitata_flagged_by_buffor_1km', {
+        'type': 'geojson',
+        'data': './data/capitata_flagged_by_buffor_1km.geojson'
+      });
+
+      map.addLayer({
+        id: 'capitata_flagged_by_buffor_1km',
+        type: 'circle',
+        source: 'capitata_flagged_by_buffor_1km',
+        layout: {
+          // make layer visible by default
+          'visibility': 'none'
+        },
+        paint: {
+          'circle-radius': 4,
+          'circle-color': 'red',
+          'circle-stroke-color': 'white',
+          'circle-stroke-width': 1,
+          'circle-opacity': 0.6
+        }
+      });
+
+      map.addSource('capitata_flagged_by_hand', {
+        'type': 'geojson',
+        'data': './data/capitata_flagged_by_hand.geojson'
+      });
+
+      map.addLayer({
+        id: 'capitata_flagged_by_hand',
+        type: 'circle',
+        source: 'capitata_flagged_by_hand',
+        layout: {
+          // make layer visible by default
+          'visibility': 'none'
+        },
+        paint: {
+          'circle-radius': 4,
+          'circle-color': 'red',
+          'circle-stroke-color': 'white',
+          'circle-stroke-width': 1,
+          'circle-opacity': 0.6
+        }
+      });
+
+      map.addSource('capitata_status_ok', {
+        'type': 'geojson',
+        'data': './data/capitata_status_ok.geojson'
+      });
+
+      map.addLayer({
+        id: 'capitata_status_ok',
+        type: 'circle',
+        source: 'capitata_status_ok',
+        layout: {
+          // make layer visible by default
+          'visibility': 'none'
+        },
+        paint: {
+          'circle-radius': 4,
+          'circle-color': 'green',
+          'circle-stroke-color': 'white',
+          'circle-stroke-width': 1,
+          'circle-opacity': 0.6
+        }
+      });
+
+      map.addSource('capitata_bebif', {
+        'type': 'geojson',
+        'data': './data/capitata_bebif.geojson'
+      });
+
+      map.addLayer({
+        id: 'capitata_bebif',
+        type: 'circle',
+        source: 'capitata_bebif',
+        layout: {
+          // make layer visible by default
+          'visibility': 'none'
+        },
+        paint: {
+          'circle-radius': 4,
+          'circle-color': 'orange',
+          'circle-stroke-color': 'white',
+          'circle-stroke-width': 1,
+          'circle-opacity': 0.6
+        }
+      });
+
+      map.addSource('dorsalis_flagged_by_script', {
+        'type': 'geojson',
+        'data': './data/dorsalis_flagged_by_script.geojson'
+      });
+
+      map.addLayer({
+        id: 'dorsalis_flagged_by_script',
+        type: 'circle',
+        source: 'dorsalis_flagged_by_script',
+        layout: {
+          // make layer visible by default
+          'visibility': 'none'
+        },
+        paint: {
+          'circle-radius': 4,
+          'circle-color': 'red',
+          'circle-stroke-color': 'white',
+          'circle-stroke-width': 1,
+          'circle-opacity': 0.6
+        }
+      });
+
+      map.addSource('dorsalis_flagged_by_buffor_1km', {
+        'type': 'geojson',
+        'data': './data/dorsalis_flagged_by_buffor_1km.geojson'
+      });
+
+      map.addLayer({
+        id: 'dorsalis_flagged_by_buffor_1km',
+        type: 'circle',
+        source: 'dorsalis_flagged_by_buffor_1km',
+        layout: {
+          // make layer visible by default
+          'visibility': 'none'
+        },
+        paint: {
+          'circle-radius': 4,
+          'circle-color': 'red',
+          'circle-stroke-color': 'white',
+          'circle-stroke-width': 1,
+          'circle-opacity': 0.6
+        }
+      });
+
+      map.addSource('dorsalis_by_hand', {
+        'type': 'geojson',
+        'data': './data/dorsalis_by_hand.geojson'
+      });
+
+      map.addLayer({
+        id: 'dorsalis_by_hand',
+        type: 'circle',
+        source: 'dorsalis_by_hand',
+        layout: {
+          // make layer visible by default
+          'visibility': 'none'
+        },
+        paint: {
+          'circle-radius': 4,
+          'circle-color': 'red',
+          'circle-stroke-color': 'white',
+          'circle-stroke-width': 1,
+          'circle-opacity': 0.6
+        }
+      });
+
+      map.addSource('dorsalis_status_ok', {
+        'type': 'geojson',
+        'data': './data/dorsalis_status_ok.geojson'
+      });
+
+      map.addLayer({
+        id: 'dorsalis_status_ok',
+        type: 'circle',
+        source: 'dorsalis_status_ok',
+        layout: {
+          // make layer visible by default
+          'visibility': 'none'
+        },
+        paint: {
+          'circle-radius': 4,
+          'circle-color': 'green',
+          'circle-stroke-color': 'white',
+          'circle-stroke-width': 1,
+          'circle-opacity': 0.6
+        }
+      });
+
+      map.addSource('zonata_flagged_by_script', {
+        'type': 'geojson',
+        'data': './data/zonata_flagged_by_script.geojson'
+      });
+
+      map.addLayer({
+        id: 'zonata_flagged_by_script',
+        type: 'circle',
+        source: 'zonata_flagged_by_script',
+        layout: {
+          // make layer visible by default
+          'visibility': 'none'
+        },
+        paint: {
+          'circle-radius': 4,
+          'circle-color': 'red',
+          'circle-stroke-color': 'white',
+          'circle-stroke-width': 1,
+          'circle-opacity': 0.6
+        }
+      });
+
+      map.addSource('zonata_flagged_by_buffor_1km', {
+        'type': 'geojson',
+        'data': './data/zonata_flagged_by_buffor_1km.geojson'
+      });
+
+      map.addLayer({
+        id: 'zonata_flagged_by_buffor_1km',
+        type: 'circle',
+        source: 'zonata_flagged_by_buffor_1km',
+        layout: {
+          // make layer visible by default
+          'visibility': 'none'
+        },
+        paint: {
+          'circle-radius': 4,
+          'circle-color': 'red',
+          'circle-stroke-color': 'white',
+          'circle-stroke-width': 1,
+          'circle-opacity': 0.6
+        }
+      });
+
+      map.addSource('zonata_status_ok', {
+        'type': 'geojson',
+        'data': './data/zonata_status_ok.geojson'
+      });
+
+      map.addLayer({
+        id: 'zonata_status_ok',
+        type: 'circle',
+        source: 'zonata_status_ok',
+        layout: {
+          // make layer visible by default
+          'visibility': 'none'
+        },
+        paint: {
+          'circle-radius': 4,
+          'circle-color': 'green',
+          'circle-stroke-color': 'white',
+          'circle-stroke-width': 1,
+          'circle-opacity': 0.6
+        }
+      });
+
+      //make visible active radio input
+
+      const selections = document.querySelectorAll('input[name="path"]');
+      let userSelection;
+      for (const selection of selections) {
+        if (selection.checked) {
+          userSelection = selection.value;
+          map.setLayoutProperty(userSelection, 'visibility', 'visible');
+        }
+      }
+      //console.log(userSelection);
+
+      //map.setLayoutProperty(userSelection, 'visibility', 'visible')
+
     }
-}
 
-function toggle2(source) {
-    var checkboxes = document.querySelectorAll('input[class="group2"]');
-    for (var i = 0; i < checkboxes.length; i++) {
+    map.on('style.load', function () {
+      // Triggered when `setStyle` is called.
+
+      addDataLayer();
+
+    });
+
+    map.on('load', function () {
+
+      baseLayers.forEach(function (l) {
+        var button = document.createElement('button');
+        button.textContent = l.label;
+        button.addEventListener('click', function () {
+          map.setStyle('mapbox://styles/mapbox/' + l.id);
+        });
+
+        menu.appendChild(button);
+
+        // Create a popup, but don't add it to the map yet.
+        var popup = new mapboxgl.Popup({
+          closeButton: false,
+          closeOnClick: false
+        });
+
+        map.on('mouseenter', 'capitata_status_ok', function (e) {
+          // Change the cursor style as a UI indicator.
+          map.getCanvas().style.cursor = 'pointer';
+
+          var coordinates = e.features[0].geometry.coordinates.slice();
+          var description = e.features[0].properties.unique_identifier;
+
+          // Ensure that if the map is zoomed out such that multiple
+          // copies of the feature are visible, the popup appears
+          // over the copy being pointed to.
+          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+          }
+
+          // Populate the popup and set its coordinates
+          // based on the feature found.
+          popup.setLngLat(coordinates).setHTML("ID: " + description).addTo(map);
+        });
+
+        map.on('mouseleave', 'capitata_status_ok', function () {
+          map.getCanvas().style.cursor = '';
+          popup.remove();
+        });
+      });
+    });
+
+    function toggle1(source) {
+      var checkboxes = document.querySelectorAll('input[class="group1"]');
+      for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i] != source)
-            checkboxes[i].checked = source.checked;
+          checkboxes[i].checked = source.checked;
+      }
     }
-}
 
-function toggle3(source) {
-    var checkboxes = document.querySelectorAll('input[class="group3"]');
-    for (var i = 0; i < checkboxes.length; i++) {
+    function toggle2(source) {
+      var checkboxes = document.querySelectorAll('input[class="group2"]');
+      for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i] != source)
-            checkboxes[i].checked = source.checked;
+          checkboxes[i].checked = source.checked;
+      }
     }
-}
 
-//function for get geojson file path
-var activeLayer = "capitata_status_ok";
-function myFunction() {
-            
-    var name = document.getElementsByName('path');
+    function toggle3(source) {
+      var checkboxes = document.querySelectorAll('input[class="group3"]');
+      for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i] != source)
+          checkboxes[i].checked = source.checked;
+      }
+    }
 
-    var i;
-    for (i = 0; i < name.length; i++) {
+    //function for get geojson file path
+    var activeLayer = "capitata_status_ok";
+
+    function myFunction() {
+
+      var name = document.getElementsByName('path');
+
+      var i;
+      for (i = 0; i < name.length; i++) {
         if (name[i].checked) {
           activeLayer = name[i].value;
           console.log(activeLayer);
           map.setLayoutProperty(activeLayer, 'visibility', 'visible')
 
           // Change the cursor to a pointer when the mouse is over the places layer.
-    map.on('mouseenter', activeLayer, function() {
-        map.getCanvas().style.cursor = 'pointer';
-    });
+          map.on('mouseenter', activeLayer, function () {
+            map.getCanvas().style.cursor = 'pointer';
+          });
 
-    // Change it back to a pointer when it leaves.
-    map.on('mouseleave', activeLayer, function() {
-        map.getCanvas().style.cursor = '';
-    });
+          // Change it back to a pointer when it leaves.
+          map.on('mouseleave', activeLayer, function () {
+            map.getCanvas().style.cursor = '';
+          });
 
-    // When a click event occurs on a feature in the places layer, open a popup at the
-    // location of the feature, with description HTML from its properties.
-    map.on('click', activeLayer, function (e) {
-      var features = e.features;
-            var featureList = document.getElementById('features');
-            featureList.innerHTML = '';
-
-            for (var i = 0; i < features.length; i++) {
-                var listToOpen = document.createElement('li');
-                featureList.appendChild(listToOpen);
-                listToOpen.setAttribute('class','default open');
-
-                var featureItem = document.createElement('div');
-                featureItem.setAttribute('class','link');
-                featureItem.innerHTML = "Point no. " + [i];
-                listToOpen.appendChild(featureItem);
-                featureList.setAttribute('class','accordion');
-
-                var propertyList = document.createElement('ul');
-                listToOpen.appendChild(propertyList);
-                propertyList.setAttribute('class','submenu');
-
-                var properties = features[i].properties;
-
-                for (var property in properties) {
-
-                    var propertyItem = document.createElement('li');
-                    propertyItem.textContent = property + ': ' + properties[property];
-                    propertyList.appendChild(propertyItem);
-                    
-                }
-                
-            }
-    });
-        } else {
-          activeLayer = name[i].value;
-          map.setLayoutProperty(activeLayer, 'visibility', 'none')
-        }
-    }
-    //showLayer = txt;
-    
-    //hide active layer
-    //map.setLayoutProperty(activeLayer, 'visibility', 'none')
-    //show clicked layer
-    //map.setLayoutProperty(showLayer, 'visibility', 'visible')
-    //activeLayer = showLayer;
-    //console.log(activeLayer);
-
-    
-}
-
-map.addControl(new mapboxgl.NavigationControl(), 'top-left');
-        
-// Change the cursor to a pointer when the mouse is over the places layer.
-    map.on('mouseenter', "capitata_status_ok", function() {
-        map.getCanvas().style.cursor = 'pointer';
-    });
-
-    // Change it back to a pointer when it leaves.
-    map.on('mouseleave', "capitata_status_ok", function() {
-        map.getCanvas().style.cursor = '';
-    });
-
-    map.on('click', "capitata_status_ok", function (e) {
+          // When a click event occurs on a feature in the places layer, open a popup at the
+          // location of the feature, with description HTML from its properties.
+          map.on('click', activeLayer, function (e) {
             var features = e.features;
             var featureList = document.getElementById('features');
             featureList.innerHTML = '';
 
             for (var i = 0; i < features.length; i++) {
-                var listToOpen = document.createElement('li');
-                featureList.appendChild(listToOpen);
-                listToOpen.setAttribute('class','default open');
+              var listToOpen = document.createElement('li');
+              featureList.appendChild(listToOpen);
+              listToOpen.setAttribute('class', 'default open');
 
-                var featureItem = document.createElement('div');
-                featureItem.setAttribute('class','link');
-                featureItem.innerHTML = "Point no. " + [i];
-                listToOpen.appendChild(featureItem);
-                featureList.setAttribute('class','accordion');
+              var featureItem = document.createElement('div');
+              featureItem.setAttribute('class', 'link');
+              featureItem.innerHTML = "Point no. " + [i];
+              listToOpen.appendChild(featureItem);
+              featureList.setAttribute('class', 'accordion');
 
-                var propertyList = document.createElement('ul');
-                listToOpen.appendChild(propertyList);
-                propertyList.setAttribute('class','submenu');
+              var propertyList = document.createElement('ul');
+              listToOpen.appendChild(propertyList);
+              propertyList.setAttribute('class', 'submenu');
 
-                var properties = features[i].properties;
+              var properties = features[i].properties;
 
-                for (var property in properties) {
+              for (var property in properties) {
 
-                    var propertyItem = document.createElement('li');
-                    propertyItem.textContent = property + ': ' + properties[property];
-                    propertyList.appendChild(propertyItem);
-                    
-                }
-                
+                var propertyItem = document.createElement('li');
+                propertyItem.textContent = property + ': ' + properties[property];
+                propertyList.appendChild(propertyItem);
+
+              }
+
             }
+          });
+
+          // Create a popup, but don't add it to the map yet.
+          var popup = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false
+          });
+
+          map.on('mouseenter', activeLayer, function (e) {
+            // Change the cursor style as a UI indicator.
+            map.getCanvas().style.cursor = 'pointer';
+
+            var coordinates = e.features[0].geometry.coordinates.slice();
+            var description = e.features[0].properties.unique_identifier;
+
+            // Ensure that if the map is zoomed out such that multiple
+            // copies of the feature are visible, the popup appears
+            // over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+              coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+
+            // Populate the popup and set its coordinates
+            // based on the feature found.
+            popup.setLngLat(coordinates).setHTML("ID: " + description).addTo(map);
+          });
+
+          map.on('mouseleave', activeLayer, function () {
+            map.getCanvas().style.cursor = '';
+            popup.remove();
+          });
+
+          map.on('mouseenter', 'capitata_bebif', function (e) {
+          // Change the cursor style as a UI indicator.
+          map.getCanvas().style.cursor = 'pointer';
+
+          var coordinates = e.features[0].geometry.coordinates.slice();
+          var description = e.features[0].properties.Collection_Number;
+
+          // Ensure that if the map is zoomed out such that multiple
+          // copies of the feature are visible, the popup appears
+          // over the copy being pointed to.
+          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+          }
+
+          // Populate the popup and set its coordinates
+          // based on the feature found.
+          popup.setLngLat(coordinates).setHTML("ID: " + description).addTo(map);
+        });
+
+        map.on('mouseleave', 'capitata_bebif', function () {
+          map.getCanvas().style.cursor = '';
+          popup.remove();
+        });
+
+        } else {
+          activeLayer = name[i].value;
+          map.setLayoutProperty(activeLayer, 'visibility', 'none')
+        }
+      }
+      //showLayer = txt;
+
+      //hide active layer
+      //map.setLayoutProperty(activeLayer, 'visibility', 'none')
+      //show clicked layer
+      //map.setLayoutProperty(showLayer, 'visibility', 'visible')
+      //activeLayer = showLayer;
+      //console.log(activeLayer);
+
+
+    }
+
+    map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+
+    // Change the cursor to a pointer when the mouse is over the places layer.
+    map.on('mouseenter', "capitata_status_ok", function () {
+      map.getCanvas().style.cursor = 'pointer';
     });
 
-</script>
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', "capitata_status_ok", function () {
+      map.getCanvas().style.cursor = '';
+    });
+
+    map.on('click', "capitata_status_ok", function (e) {
+      var features = e.features;
+      var featureList = document.getElementById('features');
+      featureList.innerHTML = '';
+
+      for (var i = 0; i < features.length; i++) {
+        var listToOpen = document.createElement('li');
+        featureList.appendChild(listToOpen);
+        listToOpen.setAttribute('class', 'default open');
+
+        var featureItem = document.createElement('div');
+        featureItem.setAttribute('class', 'link');
+        featureItem.innerHTML = "Point no. " + [i];
+        listToOpen.appendChild(featureItem);
+        featureList.setAttribute('class', 'accordion');
+
+        var propertyList = document.createElement('ul');
+        listToOpen.appendChild(propertyList);
+        propertyList.setAttribute('class', 'submenu');
+
+        var properties = features[i].properties;
+
+        for (var property in properties) {
+
+          var propertyItem = document.createElement('li');
+          propertyItem.textContent = property + ': ' + properties[property];
+          propertyList.appendChild(propertyItem);
+
+        }
+
+      }
+    });
+  </script>
 
 </body>
+
 </html>
