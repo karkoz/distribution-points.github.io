@@ -396,7 +396,7 @@ function toggle3(source) {
 }
 
 //function for get geojson file path
-var activeLayer = "capitata_flagged_by_script";
+var activeLayer = "capitata_status_ok";
 function myFunction() {
             
     var name = document.getElementsByName('path');
@@ -472,16 +472,16 @@ function myFunction() {
 map.addControl(new mapboxgl.NavigationControl(), 'top-left');
         
 // Change the cursor to a pointer when the mouse is over the places layer.
-    map.on('mouseenter', "capitata_flagged_by_script", function() {
+    map.on('mouseenter', "capitata_status_ok", function() {
         map.getCanvas().style.cursor = 'pointer';
     });
 
     // Change it back to a pointer when it leaves.
-    map.on('mouseleave', "capitata_flagged_by_script", function() {
+    map.on('mouseleave', "capitata_status_ok", function() {
         map.getCanvas().style.cursor = '';
     });
 
-    map.on('click', "capitata_flagged_by_script", function (e) {
+    map.on('click', "capitata_status_ok", function (e) {
             var features = e.features;
             var featureList = document.getElementById('features');
             featureList.innerHTML = '';
