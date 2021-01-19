@@ -92,6 +92,18 @@
 
   <div id='map' class='map'></div>
 
+  <div id="copy_coordinates">
+    <input type="text" value="ID and Coordinates" id="myInput">
+
+    <div class="tooltip">
+      <button onclick="fun_copy()" onmouseout="outFunc()">
+        <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+        Copy
+      </button>
+    </div>
+  </div>
+
+
   <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoia2Fya296MyIsImEiOiJjamRhbWV1ZHIybXNtMnFsYjFjODF3aWlzIn0.L5HrNymgl6ji82sWn4OQQQ';
     var map = new mapboxgl.Map({
@@ -470,6 +482,21 @@
       }
     }
 
+    function fun_copy() {
+      var copyText = document.getElementById("myInput");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+
+      var tooltip = document.getElementById("myTooltip");
+      tooltip.innerHTML = "Copied: " + copyText.value;
+    }
+
+    function outFunc() {
+      var tooltip = document.getElementById("myTooltip");
+      tooltip.innerHTML = "Copy to clipboard";
+    }
+
     //function for get geojson file path
     var activeLayer = "capitata_status_ok";
 
@@ -516,6 +543,13 @@
               listToOpen.appendChild(propertyList);
               propertyList.setAttribute('class', 'submenu');
 
+              var coordinates2 = document.createElement('li');
+              coordinates2.textContent = features[i].geometry.coordinates.slice();
+              propertyList.appendChild(coordinates2);
+              var coord_value = features[0].geometry.coordinates.slice();
+              var id_value = features[0].properties.unique_identifier;
+              document.getElementById('myInput').value = "ID: " + id_value + " Coord:" + coord_value;
+
               var properties = features[i].properties;
 
               for (var property in properties) {
@@ -560,28 +594,28 @@
           });
 
           map.on('mouseenter', 'capitata_bebif', function (e) {
-          // Change the cursor style as a UI indicator.
-          map.getCanvas().style.cursor = 'pointer';
+            // Change the cursor style as a UI indicator.
+            map.getCanvas().style.cursor = 'pointer';
 
-          var coordinates = e.features[0].geometry.coordinates.slice();
-          var description = e.features[0].properties.Collection_Number;
+            var coordinates = e.features[0].geometry.coordinates.slice();
+            var description = e.features[0].properties.Collection_Number;
 
-          // Ensure that if the map is zoomed out such that multiple
-          // copies of the feature are visible, the popup appears
-          // over the copy being pointed to.
-          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-          }
+            // Ensure that if the map is zoomed out such that multiple
+            // copies of the feature are visible, the popup appears
+            // over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+              coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
 
-          // Populate the popup and set its coordinates
-          // based on the feature found.
-          popup.setLngLat(coordinates).setHTML("ID: " + description).addTo(map);
-        });
+            // Populate the popup and set its coordinates
+            // based on the feature found.
+            popup.setLngLat(coordinates).setHTML("ID: " + description).addTo(map);
+          });
 
-        map.on('mouseleave', 'capitata_bebif', function () {
-          map.getCanvas().style.cursor = '';
-          popup.remove();
-        });
+          map.on('mouseleave', 'capitata_bebif', function () {
+            map.getCanvas().style.cursor = '';
+            popup.remove();
+          });
 
         } else {
           activeLayer = name[i].value;
@@ -631,6 +665,13 @@
         var propertyList = document.createElement('ul');
         listToOpen.appendChild(propertyList);
         propertyList.setAttribute('class', 'submenu');
+
+        var coordinates2 = document.createElement('li');
+        coordinates2.textContent = features[i].geometry.coordinates.slice();
+        propertyList.appendChild(coordinates2);
+        var coord_value = features[0].geometry.coordinates.slice();
+        var id_value = features[0].properties.unique_identifier;
+        document.getElementById('myInput').value = "ID: " + id_value + " Coord:" + coord_value;
 
         var properties = features[i].properties;
 
