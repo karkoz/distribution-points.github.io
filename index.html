@@ -60,6 +60,8 @@
               placeholder="" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
           <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_by_hand" placeholder=""
               onclick="myFunction()"><a href="#">Flagged by hand</a></li>
+          <li><input type="checkbox" class="group2" name="path" id="1" value="dorsalis_bebif" placeholder=""
+              onclick="myFunction()"><a href="#">Data from bebif.be</a></li>
         </ul>
 
       </li>
@@ -75,6 +77,8 @@
               onclick="myFunction()"><a href="#">Flagged by script</a></li>
           <li><input type="checkbox" class="group3" name="path" id="1" value="zonata_flagged_by_buffor_1km"
               placeholder="" onclick="myFunction()"><a href="#">Flagged by 1 km buffer</a></li>
+          <li><input type="checkbox" class="group3" name="path" id="1" value="zonata_bebif" placeholder=""
+              onclick="myFunction()"><a href="#">Data from bebif.be</a></li>
         </ul>
         </form>
       </li>
@@ -326,6 +330,28 @@
         }
       });
 
+      map.addSource('dorsalis_bebif', {
+        'type': 'geojson',
+        'data': './data/dorsalis_bebif.geojson'
+      });
+
+      map.addLayer({
+        id: 'dorsalis_bebif',
+        type: 'circle',
+        source: 'dorsalis_bebif',
+        layout: {
+          // make layer visible by default
+          'visibility': 'none'
+        },
+        paint: {
+          'circle-radius': 4,
+          'circle-color': 'orange',
+          'circle-stroke-color': 'white',
+          'circle-stroke-width': 1,
+          'circle-opacity': 0.6
+        }
+      });
+
       map.addSource('zonata_flagged_by_script', {
         'type': 'geojson',
         'data': './data/zonata_flagged_by_script.geojson'
@@ -386,6 +412,28 @@
         paint: {
           'circle-radius': 4,
           'circle-color': 'green',
+          'circle-stroke-color': 'white',
+          'circle-stroke-width': 1,
+          'circle-opacity': 0.6
+        }
+      });
+
+      map.addSource('zonata_bebif', {
+        'type': 'geojson',
+        'data': './data/zonata_bebif.geojson'
+      });
+
+      map.addLayer({
+        id: 'zonata_bebif',
+        type: 'circle',
+        source: 'zonata_bebif',
+        layout: {
+          // make layer visible by default
+          'visibility': 'none'
+        },
+        paint: {
+          'circle-radius': 4,
+          'circle-color': 'orange',
           'circle-stroke-color': 'white',
           'circle-stroke-width': 1,
           'circle-opacity': 0.6
@@ -509,6 +557,7 @@
         if (name[i].checked) {
           activeLayer = name[i].value;
           console.log(activeLayer);
+
           map.setLayoutProperty(activeLayer, 'visibility', 'visible')
 
           // Change the cursor to a pointer when the mouse is over the places layer.
@@ -521,47 +570,93 @@
             map.getCanvas().style.cursor = '';
           });
 
-          // When a click event occurs on a feature in the places layer, open a popup at the
-          // location of the feature, with description HTML from its properties.
-          map.on('click', activeLayer, function (e) {
-            var features = e.features;
-            var featureList = document.getElementById('features');
-            featureList.innerHTML = '';
+          if (activeLayer === 'capitata_bebif' || activeLayer === 'dorsalis_bebif' || activeLayer === 'zonata_bebif') {
+            console.log("capitata bebfif is in active layer")
+            // When a click event occurs on a feature in the places layer, open a popup at the
+            // location of the feature, with description HTML from its properties.
+            map.on('click', activeLayer, function (e) {
+              var features = e.features;
+              var featureList = document.getElementById('features');
+              featureList.innerHTML = '';
 
-            for (var i = 0; i < features.length; i++) {
-              var listToOpen = document.createElement('li');
-              featureList.appendChild(listToOpen);
-              listToOpen.setAttribute('class', 'default open');
+              for (var i = 0; i < features.length; i++) {
+                var listToOpen = document.createElement('li');
+                featureList.appendChild(listToOpen);
+                listToOpen.setAttribute('class', 'default open');
 
-              var featureItem = document.createElement('div');
-              featureItem.setAttribute('class', 'link');
-              featureItem.innerHTML = "Point no. " + [i];
-              listToOpen.appendChild(featureItem);
-              featureList.setAttribute('class', 'accordion');
+                var featureItem = document.createElement('div');
+                featureItem.setAttribute('class', 'link');
+                featureItem.innerHTML = "Point no. " + [i];
+                listToOpen.appendChild(featureItem);
+                featureList.setAttribute('class', 'accordion');
 
-              var propertyList = document.createElement('ul');
-              listToOpen.appendChild(propertyList);
-              propertyList.setAttribute('class', 'submenu');
+                var propertyList = document.createElement('ul');
+                listToOpen.appendChild(propertyList);
+                propertyList.setAttribute('class', 'submenu');
 
-              var coordinates2 = document.createElement('li');
-              coordinates2.textContent = features[i].geometry.coordinates.slice();
-              propertyList.appendChild(coordinates2);
-              var coord_value = features[0].geometry.coordinates.slice();
-              var id_value = features[0].properties.unique_identifier;
-              document.getElementById('myInput').value = "ID: " + id_value + " Coord:" + coord_value;
+                var coordinates2 = document.createElement('li');
+                coordinates2.textContent = features[i].geometry.coordinates.slice();
+                propertyList.appendChild(coordinates2);
+                var coord_value = features[0].geometry.coordinates.slice();
+                var id_value = features[0].properties.Collection_Number;
+                document.getElementById('myInput').value = "ID: " + id_value + " Coord:" + coord_value;
 
-              var properties = features[i].properties;
+                var properties = features[i].properties;
 
-              for (var property in properties) {
+                for (var property in properties) {
 
-                var propertyItem = document.createElement('li');
-                propertyItem.textContent = property + ': ' + properties[property];
-                propertyList.appendChild(propertyItem);
+                  var propertyItem = document.createElement('li');
+                  propertyItem.textContent = property + ': ' + properties[property];
+                  propertyList.appendChild(propertyItem);
+
+                }
 
               }
+            });
+          } else {
+            console.log("capitata bebfif is not in active la")
+            // When a click event occurs on a feature in the places layer, open a popup at the
+            // location of the feature, with description HTML from its properties.
+            map.on('click', activeLayer, function (e) {
+              var features = e.features;
+              var featureList = document.getElementById('features');
+              featureList.innerHTML = '';
 
-            }
-          });
+              for (var i = 0; i < features.length; i++) {
+                var listToOpen = document.createElement('li');
+                featureList.appendChild(listToOpen);
+                listToOpen.setAttribute('class', 'default open');
+
+                var featureItem = document.createElement('div');
+                featureItem.setAttribute('class', 'link');
+                featureItem.innerHTML = "Point no. " + [i];
+                listToOpen.appendChild(featureItem);
+                featureList.setAttribute('class', 'accordion');
+
+                var propertyList = document.createElement('ul');
+                listToOpen.appendChild(propertyList);
+                propertyList.setAttribute('class', 'submenu');
+
+                var coordinates2 = document.createElement('li');
+                coordinates2.textContent = features[i].geometry.coordinates.slice();
+                propertyList.appendChild(coordinates2);
+                var coord_value = features[0].geometry.coordinates.slice();
+                var id_value = features[0].properties.unique_identifier;
+                document.getElementById('myInput').value = "ID: " + id_value + " Coord:" + coord_value;
+
+                var properties = features[i].properties;
+
+                for (var property in properties) {
+
+                  var propertyItem = document.createElement('li');
+                  propertyItem.textContent = property + ': ' + properties[property];
+                  propertyList.appendChild(propertyItem);
+
+                }
+
+              }
+            });
+          }
 
           // Create a popup, but don't add it to the map yet.
           var popup = new mapboxgl.Popup({
@@ -569,53 +664,55 @@
             closeOnClick: false
           });
 
-          map.on('mouseenter', activeLayer, function (e) {
-            // Change the cursor style as a UI indicator.
-            map.getCanvas().style.cursor = 'pointer';
+          if (activeLayer === 'capitata_bebif' || activeLayer === 'dorsalis_bebif' || activeLayer === 'zonata_bebif') {
+            map.on('mouseenter', activeLayer, function (e) {
+              // Change the cursor style as a UI indicator.
+              map.getCanvas().style.cursor = 'pointer';
 
-            var coordinates = e.features[0].geometry.coordinates.slice();
-            var description = e.features[0].properties.unique_identifier;
+              var coordinates = e.features[0].geometry.coordinates.slice();
+              var description = e.features[0].properties.Collection_Number;
 
-            // Ensure that if the map is zoomed out such that multiple
-            // copies of the feature are visible, the popup appears
-            // over the copy being pointed to.
-            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-              coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-            }
+              // Ensure that if the map is zoomed out such that multiple
+              // copies of the feature are visible, the popup appears
+              // over the copy being pointed to.
+              while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+              }
 
-            // Populate the popup and set its coordinates
-            // based on the feature found.
-            popup.setLngLat(coordinates).setHTML("ID: " + description).addTo(map);
-          });
+              // Populate the popup and set its coordinates
+              // based on the feature found.
+              popup.setLngLat(coordinates).setHTML("ID: " + description).addTo(map);
+            });
 
-          map.on('mouseleave', activeLayer, function () {
-            map.getCanvas().style.cursor = '';
-            popup.remove();
-          });
+            map.on('mouseleave', activeLayer, function () {
+              map.getCanvas().style.cursor = '';
+              popup.remove();
+            });
+          } else {
+            map.on('mouseenter', activeLayer, function (e) {
+              // Change the cursor style as a UI indicator.
+              map.getCanvas().style.cursor = 'pointer';
 
-          map.on('mouseenter', 'capitata_bebif', function (e) {
-            // Change the cursor style as a UI indicator.
-            map.getCanvas().style.cursor = 'pointer';
+              var coordinates = e.features[0].geometry.coordinates.slice();
+              var description = e.features[0].properties.unique_identifier;
 
-            var coordinates = e.features[0].geometry.coordinates.slice();
-            var description = e.features[0].properties.Collection_Number;
+              // Ensure that if the map is zoomed out such that multiple
+              // copies of the feature are visible, the popup appears
+              // over the copy being pointed to.
+              while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+              }
 
-            // Ensure that if the map is zoomed out such that multiple
-            // copies of the feature are visible, the popup appears
-            // over the copy being pointed to.
-            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-              coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-            }
+              // Populate the popup and set its coordinates
+              // based on the feature found.
+              popup.setLngLat(coordinates).setHTML("ID: " + description).addTo(map);
+            });
 
-            // Populate the popup and set its coordinates
-            // based on the feature found.
-            popup.setLngLat(coordinates).setHTML("ID: " + description).addTo(map);
-          });
-
-          map.on('mouseleave', 'capitata_bebif', function () {
-            map.getCanvas().style.cursor = '';
-            popup.remove();
-          });
+            map.on('mouseleave', activeLayer, function () {
+              map.getCanvas().style.cursor = '';
+              popup.remove();
+            });
+          }
 
         } else {
           activeLayer = name[i].value;
