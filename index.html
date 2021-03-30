@@ -31,6 +31,28 @@
 
   <nav id='menu' class='menu'></nav>
 
+  <div id='corporate_panel'>
+    <a>Distribution points</a>
+    <table style='margin-left:auto;'>
+      <tr>
+        <td style='padding: 5px;'>
+          <a href='https://twitter.com/aszyniszewska?lang=en' target='_blank'>
+            <div style='font-size: 13px;color: black;'><i class='fab fa-twitter fa-lg'></i></div>
+          </a></td>
+        <td style='padding: 5px'>
+          <a href='https://www.linkedin.com/in/anna-szyniszewska-04a1011/' target='_blank'>
+            <div style='font-size: 13px;color: black;'><i class='fab fa-linkedin-in fa-lg'></i></div>
+          </a></td>
+        <td style='padding: 5px'><a href='https://github.com/aniaszy' target='_blank'>
+            <div style='font-size: 13px;color: black;'><i class='fab fa-github fa-lg'></i></div>
+          </a></td>
+      </tr>
+    </table>
+  </div>
+  <div id="logo"><a href="https://corvus-geostat.pl/en/"><img title = "Company website" src="corvus_geostat_logo.png" alt=""
+        style="height:30px;"></a></div>
+
+
   <div id='header'>
     <a>Choose layer</a>
   </div>
@@ -110,6 +132,22 @@
     </div>
   </div>
 
+  <div class="info"><a href='https://fruitflies-ipm.eu/' target='_blank'><img title='Project website' width='200'
+        height='168'
+        src='https://fruitflies-ipm.eu/wp-content/uploads/2019/10/FFIPM_logo-neg-05-e1572003186541-300x168.png'
+        class='image wp-image-138  attachment-medium size-medium' alt='' loading='lazy'
+        style='max-width: 100%; height: auto;'
+        srcset='https://fruitflies-ipm.eu/wp-content/uploads/2019/10/FFIPM_logo-neg-05-e1572003186541-300x168.png 300w, https://fruitflies-ipm.eu/wp-content/uploads/2019/10/FFIPM_logo-neg-05-e1572003186541-260x146.png 260w, https://fruitflies-ipm.eu/wp-content/uploads/2019/10/FFIPM_logo-neg-05-e1572003186541-50x28.png 50w, https://fruitflies-ipm.eu/wp-content/uploads/2019/10/FFIPM_logo-neg-05-e1572003186541-134x75.png 134w, https://fruitflies-ipm.eu/wp-content/uploads/2019/10/FFIPM_logo-neg-05-e1572003186541.png 657w'
+        sizes='(max-width: 300px) 100vw, 300px'></a><a href='https://ec.europa.eu/programmes/horizon2020/'
+      target='_blank'><img title='Horizon 2020 program website' width='150' height='102'
+        src='https://fruitflies-ipm.eu/wp-content/uploads/2019/10/EU-flag-border-e1572002837360.png'
+        class='image wp-image-165  attachment-full size-full' alt='' loading='lazy'
+        style='max-width: 100%; height: auto;'></a>
+    <p>
+      This project has received funding from the European Union's Horizon 2020 research and innovation programme
+      under grant agreement No 818184.
+    </p>
+  </div>
 
   <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoia2Fya296MyIsImEiOiJjamRhbWV1ZHIybXNtMnFsYjFjODF3aWlzIn0.L5HrNymgl6ji82sWn4OQQQ';
@@ -117,7 +155,7 @@
       container: 'map',
       style: 'mapbox://styles/mapbox/light-v10',
       zoom: 1,
-      center: [4.899, 52.372]
+      center: [4.899, 40.372]
     });
 
     var baseLayers = [{
@@ -150,7 +188,7 @@
         },
         paint: {
           'circle-radius': 4,
-          'circle-color': 'red',
+          'circle-color': '#b29800',
           'circle-stroke-color': 'white',
           'circle-stroke-width': 1,
           'circle-opacity': 0.6
@@ -172,7 +210,7 @@
         },
         paint: {
           'circle-radius': 4,
-          'circle-color': 'red',
+          'circle-color': '#b29800',
           'circle-stroke-color': 'white',
           'circle-stroke-width': 1,
           'circle-opacity': 0.6
@@ -194,7 +232,7 @@
         },
         paint: {
           'circle-radius': 4,
-          'circle-color': 'red',
+          'circle-color': '#b29800',
           'circle-stroke-color': 'white',
           'circle-stroke-width': 1,
           'circle-opacity': 0.6
@@ -216,7 +254,7 @@
         },
         paint: {
           'circle-radius': 4,
-          'circle-color': 'green',
+          'circle-color': '#1e9586',
           'circle-stroke-color': 'white',
           'circle-stroke-width': 1,
           'circle-opacity': 0.6
@@ -238,7 +276,7 @@
         },
         paint: {
           'circle-radius': 4,
-          'circle-color': 'red',
+          'circle-color': '#b29800',
           'circle-stroke-color': 'white',
           'circle-stroke-width': 1,
           'circle-opacity': 0.6
@@ -260,7 +298,7 @@
         },
         paint: {
           'circle-radius': 4,
-          'circle-color': 'red',
+          'circle-color': '#b29800',
           'circle-stroke-color': 'white',
           'circle-stroke-width': 1,
           'circle-opacity': 0.6
@@ -282,7 +320,7 @@
         },
         paint: {
           'circle-radius': 4,
-          'circle-color': 'red',
+          'circle-color': '#b29800',
           'circle-stroke-color': 'white',
           'circle-stroke-width': 1,
           'circle-opacity': 0.6
@@ -304,7 +342,7 @@
         },
         paint: {
           'circle-radius': 4,
-          'circle-color': 'green',
+          'circle-color': '#1e9586',
           'circle-stroke-color': 'white',
           'circle-stroke-width': 1,
           'circle-opacity': 0.6
@@ -326,7 +364,7 @@
         },
         paint: {
           'circle-radius': 4,
-          'circle-color': 'red',
+          'circle-color': '#b29800',
           'circle-stroke-color': 'white',
           'circle-stroke-width': 1,
           'circle-opacity': 0.6
@@ -348,7 +386,7 @@
         },
         paint: {
           'circle-radius': 4,
-          'circle-color': 'red',
+          'circle-color': '#b29800',
           'circle-stroke-color': 'white',
           'circle-stroke-width': 1,
           'circle-opacity': 0.6
@@ -370,7 +408,7 @@
         },
         paint: {
           'circle-radius': 4,
-          'circle-color': 'green',
+          'circle-color': '#1e9586',
           'circle-stroke-color': 'white',
           'circle-stroke-width': 1,
           'circle-opacity': 0.6
@@ -554,7 +592,7 @@
             closeButton: false,
             closeOnClick: false
           });
-          
+
           map.on('mouseenter', activeLayer, function (e) {
             // Change the cursor style as a UI indicator.
             map.getCanvas().style.cursor = 'pointer';
@@ -706,7 +744,7 @@
         zoom: 4,
         placeholder: 'Zoom to the coordinates',
         mapboxgl: mapboxgl
-      }), 'bottom-right');
+      }), 'bottom-left');
   </script>
 
 </body>

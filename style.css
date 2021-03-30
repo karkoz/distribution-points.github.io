@@ -13,31 +13,73 @@ body {
 
 #nav {
     position: fixed;
-    top: 5%;
-    width: 20%;
-    height: 60%;
-    background-color: lightgray;
+    top: 12%;
+    width: 18%;
+    height: 53%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 3px 30px -6px #aaaaaa;
+    z-index: 1;
+}
+
+#corporate_panel {
+    position: absolute;
+    display: flex;
+    top: 0;
+    right: 0;
+    width: 82%;
+    height: 7%;
+    background-color: rgb(255, 255, 255);
+    font-weight: 700;
+    color: #1f9b8c;
+    padding: 15px;
+    box-shadow: 0 3px 30px -6px #aaaaaa;
+}
+
+#corporate_panel a {
+    position: relative;
+    color: #1f9b8c;
+    font-family: Ubuntu,sans-serif;
+    text-align: left;
+    font-variant: normal;
+    font-weight: 700;
+    font-size: 1.3vw;
+}
+
+#logo {
+    position: absolute;
+    display: block;
+    top: 0;
+    width: 18%;
+    height: 7%;
+    padding-top: 10px;
+    background-color: rgb(255, 255, 255);
+    text-align:center;
+    -moz-box-shadow: 0 3px 30px -6px #aaaaaa;
+    -webkit-box-shadow: 0 3px 30px -6px #aaaaaa;
+    box-shadow: 0 3px 30px -6px #aaaaaa;
 }
 
 #header {
     position: absolute;
     display: flex;
-    top: 0;
-    width: 20%;
+    top: 7%;
+    width: 18%;
     height: 5%;
-    background: whitesmoke;
+    background: rgb(255, 255, 255);
     text-align: center;
     padding: 10px;
     margin: auto;
+    z-index: -1;
 }
 
 #header a {
     position: relative;
-    color: #a31e32;
+    color: #1f9b8c;
+    font-family: Ubuntu,sans-serif;
     text-align: center;
     margin: auto;
     font-variant: normal;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1vw;
 }
 
@@ -45,15 +87,16 @@ body {
     position: absolute;
     display: flex;
     bottom: 0;
-    width: 20%;
-    height: 40%;
-    background:#d8d1d2;
+    width: 18%;
+    height: 35%;
+    background:#ffffff;
     text-align: center;
     padding: 10px;
     margin: auto;
     border-top-style: solid;
     border-color: rgb(172, 172, 172);
     border-width: 0.1mm;
+    
 }
 
 #header-popup {
@@ -62,7 +105,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 10%;
+    height: 12%;
     background: whitesmoke;
     text-align: center;
     margin: auto;
@@ -73,11 +116,12 @@ body {
 
 #header-popup a {
     position: relative;
-    color: #a31e32;
+    color: #1f9b8c;
+    font-family: Ubuntu,sans-serif;
     text-align: center;
     margin: auto;
     font-variant: normal;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1vw;
 }
 
@@ -89,7 +133,7 @@ body {
 	height: 90%;
 	border-radius: 3px;
     overflow: auto;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgb(231, 231, 231);
     overflow: scroll;
 }
 
@@ -100,11 +144,12 @@ body {
 
 #map {
     position: absolute;
-    top: 0;
+    top: 7%;
     bottom: 0;
-    width: 80%;
+    width: 82%;
     right: 0;
-    height: 100%;
+    height: 93%;
+    z-index: -1;
 
 }
 
@@ -118,15 +163,15 @@ body {
 .menu {
   position:absolute;
   z-index:1;
-  top:10px;
+  top:10%;
   right:10px;
   border-radius:3px;
   width:120px;
   }
 .menu button {
   font:13px/20px 'Helvetica Neue', sans-serif;
-  background:#535353;
-  color:#fff;
+  background:whitesmoke;
+  color:#606060;
   display:block;
   width:100%;
   margin:0;
@@ -145,7 +190,7 @@ body {
     }
   .menu button.active,
   .menu button:hover {
-    background-color:#6d6d6d;
+    background-color:#e6e6e6;
     }
 
     ul {
@@ -153,8 +198,9 @@ body {
     }
     
     a {
-        color: #a31e32;
+        color: #0e0e0e;
         text-decoration: none;
+        text-align: right;
     }
     
     /** =======================
@@ -169,15 +215,15 @@ body {
     }
     
     h1 a {
-        color: #a31e32;
+        color: #0e0e0e;
         font-size: 16px;
     }
     
     .accordion {
         object-fit: fill;
         width: 100%;
-        height: 95%;
-        background: #FFF;
+        height: 100%;
+        background: rgb(231, 231, 231);
         max-width: none;
         -webkit-border-radius: 4px;
         -moz-border-radius: 4px;
@@ -191,7 +237,7 @@ body {
         cursor: pointer;
         display: block;
         padding: 15px 15px 15px 42px;
-        color: #4d99cf;
+        color: #606060;
         font-size: 14px;
         font-weight: 700;
         border-bottom: 1px solid #CCC;
@@ -229,11 +275,11 @@ body {
     }
     
     .accordion li.open .link {
-        color: #b63b4d;
+        color: #606060;
     }
     
     .accordion li.open i {
-        color: #b63b4d;
+        color: #606060;
     }
     
     .accordion li.open i.fa-chevron-down {
@@ -249,19 +295,19 @@ body {
     
     .submenu {
         display: none;
-        background: #535353;
+        background: rgb(255, 255, 255);
         font-size: 13px;
     }
     
     .submenu li {
-        border-bottom: 1px solid #4b4a5e;
+        border-bottom: 1px solid #606060;
     }
     
     .submenu li {
         cursor: default;
         display: block;
         text-decoration: none;
-        color: #d9d9d9;
+        color: #606060;
         padding: 10px;
         padding-left: 42px;
         padding-right: 42px;
@@ -278,13 +324,14 @@ body {
     
     .submenu a {
         cursor: default;
-        color: #d9d9d9;
+        color: #606060;
     }
     
     
     .submenu li:hover {
-        background: #6d6d6d;
-        color: #FFF;
+        background: rgba(255, 217, 0, 0.808);
+        color: #606060;
+        border-left: 4px solid #1F9B8C;
     }
     
     
@@ -315,8 +362,22 @@ body {
 
     #copy_coordinates {
         position: absolute;
-        bottom: 5%;
-        left: 21%;
+        bottom: 12%;
+        left: 19%;
+    }
+
+    .info {
+        width: 175px;
+        background-color: whitesmoke;
+        color: #606060;
+        font: 13px/20px 'Helvetica Neue', sans-serif;
+        border-radius: 3px;
+        bottom: 35px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
+        padding: 10px;
+        position: absolute;
+        right: 1%;
+        z-index: 1;
     }
     
     #myInput {
